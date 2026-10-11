@@ -19,63 +19,81 @@ public class Agenda {
         System.out.println("Contato Adicionado");
     }
 
-    public void removerContato(Contato contato) {
+    public boolean removerContato(String nome) {
 
-        if (contatos.remove(contato)) {
-            System.out.println("Contato removido");
+        Contato remover = this.buscarContatoNome(nome);
 
-            this.quantidadeContatos--;
+        if (remover != null) {
+            contatos.remove(remover);
+
+            this.quantidadeContatos --;
+            
+            return true;
         }
+
         else {
-            System.out.println("Contato não encontrado");
+
+            return false;
         }
 
-        
     }
 
-    public void buscarContatoNome (String nome){
+    public Contato buscarContatoNome(String nome) {
 
         for (int i = 0; i < contatos.size(); i++) {
 
             if (contatos.get(i).getNome().equals(nome)) {
-                
-                System.out.println(this.contatos.get(i).toString());
 
-                break;
+                return contatos.get(i);
+
             }
-            
+
         }
 
-        System.out.println("Contato não encontrado");
+        return null;
     }
 
-    public void buscarContatoEmail (String email) {
+    public Contato buscarContatoEmail(String email) {
 
         for (int i = 0; i < contatos.size(); i++) {
 
             if (contatos.get(i).getEmail().equals(email)) {
-                
-                System.out.println(contatos.get(i).toString());
 
-                break;
+                return contatos.get(i);
+
             }
         }
 
-        System.out.println("Contato não encontrado");
+        return null;
     }
 
-    public void buscarContatoTelefone (String telefone) {
+    public Contato buscarContatoTelefone(String telefone) {
 
         for (int i = 0; i < contatos.size(); i++) {
 
             if (contatos.get(i).getTelefone().equals(telefone)) {
-                
-                System.out.println("this.contatos.get(i).toString()");
 
-                break;
+                return contatos.get(i);
+
             }
         }
 
-        System.out.println("Contato não encontrado");
+        return null;
+    }
+
+    public ArrayList<Contato> getContatos() {
+        return contatos;
+    }
+
+    public void setContatos(ArrayList<Contato> contatos) {
+        this.contatos = contatos;
+    }
+
+    public int getQuantidadeContatos() {
+        return quantidadeContatos;
+    }
+
+    public void setQuantidadeContatos(int quantidadeContatos) {
+        this.quantidadeContatos = quantidadeContatos;
     }
 }
